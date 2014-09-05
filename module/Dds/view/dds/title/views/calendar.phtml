@@ -1,0 +1,63 @@
+<!-- TODO : We need to move this to a different template so that we can handle the views better-->  
+<?php
+$this->headLink()->appendStylesheet('/css/calendar.css');
+//$this->HeadScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
+$this->HeadScript()->appendFile($this->basePath . '/js/jquery.calendar.js');
+?>
+<p>The following items are available online:</p>
+
+
+<div id="main-container">
+
+</div> 
+<div style="clear:both;"></div>
+<div id="loader" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- dialog body -->
+      <div class="modal-body">
+          <img src="/img/loader.GIF">
+       <p> Loading please wait...</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<?php $this->InlineScript()->captureStart() ?> 
+
+<?php
+/* Sort the Year */
+sort($years);
+?>
+
+var years_array = [ <?php echo implode(",", $years); ?>];
+
+var year = <?php echo current($years); ?>
+
+
+var member =  <?php echo (isset($user) && $user['user']['role'] == "member") ? 'true' : 'false'; ?>; // This is a placeholder 
+
+$(document).ready(function() {                        
+
+$("#main-container").calendar({
+        click_callback: calendar_callback, 
+        year: year, 
+        year_array: years_array ,
+        scroll_to_date: true, 
+        req_ajax:{
+        type: 'post',
+        url: '<?php echo $this->url('dds-item', array('action' => 'json')); ?>',
+        TitleLink: <?php echo $title->tid; ?>
+}
+});
+
+});
+var calendar_callback = function(date) {
+
+        var url = <?php echo $this->url('dds-item', array('action' => 'index')); ?>/+date.iid/1;
+        $(location).attr('href', url);
+
+}
+<?php $this->InlineScript()->captureEnd() ?>
+ 

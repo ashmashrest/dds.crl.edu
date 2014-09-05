@@ -1,0 +1,99 @@
+<!-- TODO : We need to move this to a different template so that we can handle the views better-->    
+<p>The following items are available online:</p>
+<?php
+//  echo "<pre>";
+//  print_r($items);
+//  echo "</pre>";
+?>
+<?php
+$item_link = "";
+
+
+
+
+echo '<ul class="list-group">';
+
+while ($item = $items->current()) {
+
+    // Assign Item descriptive text 
+    $item_text = $item->part1;
+
+    if (!empty($item_text) && !empty($item->part2)) {
+        $item_text .= ", " . $item->part2;
+    }
+
+    if (empty($item_text)) {
+
+        if ($item->digitalpno < 2)
+            $item_text = "Full text PDF";
+        else
+            $item_text = sprintf("This document consists of %s scans split over %s files to reduce download time", $item->pages, $item->digitalpno);
+    }
+
+
+    $item_link = sprintf("<a href='%s'>%s</a>", $this->url('dds-item', array('action' => 'index', 'id' => $item->iid)), $item_text);
+
+
+    $item_link .= $item->copyright;
+    ?>
+    <?php
+    // Add TOC if the TOC field is not null
+    if ($item->toc) {
+        echo "<li  class='list-group-item'>";
+        printf("<a href='%s'>Table of Content </a> %s", $this->url('dds-item', array('action' => 'index', 'id' => $item->iid, 'f' => 'toc')), $item->copyright);
+        echo "</li>";
+    }
+    ?>                 
+    <li  class='list-group-item'>
+
+    <?php
+    if ($item->digitalpno > 1) {
+
+        echo $item_text . $item->copyright;
+
+
+        printf(" (%d Files) <span class='badge pull-right'>%d Scans</span>  </br> <ul>", $item->digitalpno, $item->pages);
+
+        if ($item->fileuneven == "0" || empty($item->fileuneven)) {
+
+            $pageMin = 1;
+            $pageMax = 100;
+            for ($file = 1; $file <= $item->digitalpno - 1; $file++) {
+
+                printf("<li> <a href='%s'>Scans %d-%d </a> %s</li>", $this->url('dds-item', array('action' => 'index', 'id' => $item->iid, 'f' => $file)), $pageMin, $pageMax, $item->copyright);
+
+                // Updated the page count
+                $pageMin = $pageMin + 100;
+                $pageMax = $pageMax + 100;
+            }
+
+            printf("<li> <a href='%s'>Scans %d-%d </a> %s</li>", $this->url('dds-item', array('action' => 'index', 'id' => $item->iid, 'f' => $file)), $pageMin, $item->pages, $item->copyright);
+        } else {
+
+            for ($file = 1; $file <= $item->digitalpno; $file++) {
+
+                printf("<li> <a href='%s'>File %d </a> %s </li>", $this->url('dds-item', array('action' => 'index', 'id' => $item->iid, 'f' => $file)), $file, $item->copyright);
+            }
+        }
+
+        printf("</ul>");
+    } else if ($item->pages) {
+
+        echo $item_link;
+
+        printf(" <span class='badge pull-right'>%d Scans</span> ", $item->pages);
+    } else {
+
+        echo $item_link;
+    }
+    ?>
+    </li>
+
+
+        <?php
+        $items->next();
+    }
+    echo "</ul>";
+    ?>
+
+

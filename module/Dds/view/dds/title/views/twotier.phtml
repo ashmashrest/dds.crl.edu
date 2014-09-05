@@ -1,0 +1,56 @@
+<!-- TODO : We need to move this to a different template so that we can handle the views better-->    
+<p><span class='glyphicon glyphicons_plus'></span> The following items are available online:</p>
+<?php
+
+
+$sorted = "";
+$sorted_array = "";
+$item_link = "";
+$itemsArray = $items->toArray();
+
+//arsort($sorted);
+
+foreach ($itemsArray as $item) {
+   
+        $item_link = sprintf("<a href='%s'>%s</a>", $this->url('dds-item', array('action' => 'index', 'id' => $item['iid'])), $item['part2']);
+    
+     if ($item['pages'] > 0) {
+             $item_link .= sprintf(" ( %s scans)", $item['pages']);
+        }
+   
+    $item_link .= $item['copyright'];
+    
+    
+    $sorted[$item['part1']][] = $item_link;
+}
+
+?>
+<?php
+echo '<ul class="list-group">';
+
+foreach ($sorted as $handler => $items ) {
+   printf("<li  class='list-group-item'  ><span class='handler glyphicon-plus' >  <a href='#' onclick='return false;'>%s</a></span><span class='badge'>%d Items</span>", 
+                $handler,
+                count($items));
+   printf("<ul class='child'>");
+  
+   foreach( $items as $key =>$link){
+      // sprintf("<li>%s</li>", $link);
+       printf("<li>%s</li>", $link);
+   }
+   printf("</li></ul>");
+}
+printf( "</ul>");
+?>
+
+<?php $this->InlineScript()->captureStart() ?> 
+$( document ).ready(function() {
+	$('.handler').siblings('.child').hide();
+	 
+	$('.handler').click(function() {
+		$(this).siblings().slideToggle();
+		$( this ).toggleClass( "expand glyphicon-minus" );
+	});
+      
+});
+<?php $this->InlineScript()->captureEnd() ?>

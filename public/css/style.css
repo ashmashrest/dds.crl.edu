@@ -1,0 +1,163 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+html{height:100%;}
+body {
+
+    padding-top: 100px;
+    height:100%;
+    font:13px/1.5 Verdana,Helvetica,Arial,sans-serif;
+    background: url(/img/body-bg.png) top right repeat-y;
+}
+#wrap{
+    min-height:100%;
+    position: relative;
+    bottom:0;
+}
+
+label {
+    display:block;
+}
+.zf-green {
+    color: #68b604;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.clearfix {
+    display: inline-block;
+}
+html[xmlns] .clearfix {
+    display: block;    
+}
+* html .clearfix {
+    height: 1%;
+}
+
+.right {
+    float:right;
+}
+.item-navigation{
+    margin:0px 0px;
+}
+/*FULLSCREEN CSS*/
+.fullscreen-container:full-screen {
+    width:100%;
+    height:100%;
+}
+
+/* W3C proposal (no dash) */
+.fullscreen-container:fullscreen {
+    width:100%;
+    height:100%;
+}
+
+/* currently working vendor prefixes */
+.fullscreen-container:-webkit-full-screen, .fullscreen-container:-moz-full-screen {
+    width:100%;
+    height:100%;
+}
+
+footer {
+    border-top: 1px solid transparent;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    min-height: 120px;
+    background-color: #2B2A45;
+    color: #e9e6d3;
+}
+
+.footer-title{
+    padding-top:15px;
+    font-family:"Helvetica Neue",Helvetica,sans-serif;  
+    font-size:140%;
+    font-weight: bold;
+    border-bottom: 1px solid #66667B;
+    padding-bottom:10px;
+    position: absolute;
+    width: 75%;
+}
+footer ul{
+    list-style-type: none;
+}
+
+@media (max-width: 991px) {   
+    .region-footer-first{
+        margin-top:75px;
+    }
+
+    .region-footer-second,
+    .region-footer-third{
+        margin-top:25px;
+    }
+}
+@media (min-width: 992px){
+    .region-inner{
+        position:relative;
+        margin-top:85px;
+    }
+    .region-footer-first{
+        background:url(/img/footer-tools-bg.png) 0 0 repeat;
+        min-height:175px;
+    }
+
+    .region-footer-second,
+    .region-footer-third{
+        margin-left: auto;
+        min-width:100px;
+    }
+}
+
+
+
+/* Blockquote override CSS */
+blockquote {
+    width:85%;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.45;
+    position: relative;
+    border:none;
+}
+
+/* Footer Social CSS */
+footer a{
+    color: #e9e6d3!important;
+}
+footer a:hover{
+    color: #e9e6d3;
+    text-decoration: none;
+}
+.social-btn{
+    padding-left: 20px;
+    padding-bottom: 5px;
+
+}
+.glyphicon-facebook{    
+    content:url(/img/facebook-white.png)  no-repeat;  
+    color:red;
+    font-size: 25px;
+    top:8px;
+
+
+}
+.glyphicon-twitter{
+    content: url(/img/twitter-white.png)  no-repeat;
+    font-size: 25px;
+    top:8px;
+}
+.glyphicon-youtube{
+    content: url(/img/youtube-white.png)  no-repeat;
+    color:#fef4e9;
+    font-size: 25px;
+    top:8px;
+}
+.panel-title{ color:#fff;}
+.panel-default{border-color:#e9e6d3}
+#body-container{ min-height: 68vh;}

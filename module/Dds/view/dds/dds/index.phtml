@@ -1,0 +1,23 @@
+<div class="jumbotron">
+    <h3><?php echo sprintf($this->translate("Welcome to %sCRL's Digital Delivery System%s"), '<span class="zf-green">', '</span>') ?></h3><bR>
+    <p>This site hosts materials digitized from collections at the Center for Research Libraries to support research and teaching.</p>
+    <p>Documents, newspapers, books, and journals are among the items CRL scans in response to scholars’ requests for access to CRL holdings.  These resources are made available to members of the CRL community.</p>
+    <p>All materials digitized from CRL collections can be accessed through the <a href="http://catalog.crl.edu">CRL catalog</a>.</p>
+</div>
+<div class="row">
+     <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Access Information') ?></h3>
+            </div>
+            <div class="panel-body">
+                 <p>Users affiliated to <a href="http://www.crl.edu/membership/members">CRL member</a> institution should have access to this content via one of the following:</p>
+            <ul>
+                <li>From on-campus IP addresses</li>
+                <li>From off-campus locations using your institution’s <a href="http://www.crl.edu/membership/connecting-crl/off-campus-access">Proxy</a> Server</li>
+                <li><a href="/Shibboleth.sso/Login?target=<?= $this->serverUrl(true); ?>">Shibboleth login</a> for users not already logged into a proxy server. Only CRL member institutions which belong to the <a href="http://www.incommon.org/participants/">InCommon federation</a> are included. Visit the <a href="http://www.crl.edu/shibboleth">CRL Shibboleth</a> information page for more details.</li>  
+            </ul>
+            </div>
+        </div>
+    </div>   
+</div>

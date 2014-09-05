@@ -1,0 +1,12 @@
+<div class="source_data">
+      Your IP: <span class="asking_ip"><?php echo $_SERVER['REMOTE_ADDR'];?></span><br />
+      IP to check: <span class="passed_ip"><?php echo $this->data['ipaddress'];?></span><br />
+    </div>
+    <div class="responce">
+      Member status (based on IP checked): 
+      <span class="member_result"><?php echo ($this->data['role']== 'member')?'TRUE':'FALSE';?></span><br />
+      Member institution ID: 
+      <span class="member_result_id"><?php echo $this->data['instid'];?></span><br />
+      Member institution Name: 
+      <span class="member_result_name"><?php echo $this->data['displayName'];?></span><br />
+    </div>

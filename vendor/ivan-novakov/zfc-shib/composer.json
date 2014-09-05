@@ -1,0 +1,27 @@
+{
+    "name" : "ivan-novakov/zfc-shib",
+    "type" : "library",
+    "description" : "Shibboleth authentication for Zend Framework 2",
+    "homepage" : "https://github.com/ivan-novakov/ZfcShib",
+    "license" : "BSD-3-Clause",
+    "authors" : [
+        {
+            "name" : "Ivan Novakov",
+            "homepage" : "http://novakov.cz/"
+        }
+    ],
+    "require" : {
+        "php" : ">=5.3.3",
+        "zendframework/zend-authentication" : "2.*",
+        "zendframework/zend-modulemanager": "2.*",
+        "zendframework/zend-loader": "2.*"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "ZfcShib\\" : "src/"
+        },
+        "classmap" : [
+            "Module.php"
+        ]
+    }
+}

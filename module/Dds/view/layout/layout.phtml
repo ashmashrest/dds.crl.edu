@@ -1,0 +1,111 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('DDS ' . $this->translate('Center for Research Libraries'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php
+        echo $this->headMeta()
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php
+        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                ->prependStylesheet($this->basePath() . '/css/style.css')
+                ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.css')
+                ->prependStylesheet($this->basePath() . '/css/bootstrap.css')
+        ?>
+        <link rel="resource" type="application/l10n" href="/locale/locale.properties"/>
+        <!-- Scripts -->
+        <?php
+        echo $this->headScript()
+                ->prependFile($this->basePath() . '/js/dds.js')
+                ->prependFile($this->basePath() . '/js/bootstrap.js')
+                ->prependFile($this->basePath() . '/js/jquery.min.js')
+                ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                ->prependFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+        ;
+        ?>
+
+    </head>  
+    <body>
+        
+
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="<?php echo $this->url('home') ?>">
+                            <img src="<?php echo $this->basePath('img/logo-white.gif') ?>" alt="Center for Research Libraries" style="width: 45%;min-width: 200px;"/>
+                            &nbsp;<span class="tagline" ><?php echo $this->translate('Digital Delivery System') ?></span>
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                    <!--        <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+                            <li class="active"><a href="<?php echo $this->url('dds-pages', array('action' => 'rights-statement')); ?>"><?php echo $this->translate('Rights Statement') ?></a></li>
+                            <li class="active"><a href="<?php echo $this->url('dds-pages', array('action' => 'contact-us')) ?>"><?php echo $this->translate('Contact Us') ?></a></li>-->
+                      
+                        </ul>
+                    </div>       <!--/.nav-collapse -->
+                </div>
+            </nav>
+            <!-- container -->
+            <div id="body-container" class="container">
+                <?php echo $this->content; ?>
+                <div style="clear:both;"></div>
+            </div>
+            <!-- /container -->
+
+            <!---- footer ----->
+            <footer>
+
+                <div class="container">
+                    <div id="footer-title" class="footer-title ">
+                        <div class="col-md-4">
+                            <a href="http://www.crl.edu" target="_blank">Center for Research Libraries</a>
+                        </div>
+                    </div>
+                    <div  class="col-md-4 region region-footer-first" >
+                        <div class="region-inner">
+                            <blockquote> Access to primary sources for advanced research in the humanities, sciences and social sciences.</blockquote>
+                        </div>
+                    </div>
+                    <div class="col-md-2 list-unstyled region region-footer-second">
+                        <ul class="region-inner"> 
+                            <li><a href="http://www.crl.edu/about/" target="_blank">About CRL</a></li>
+                            <li><a href="http://www.crl.edu/membership/">Membership</a></li>
+                            <li><a href="http://www.crl.edu/collaborations" target="_blank">Collaborations</a></li>
+                            <li><a href="http://catalog.crl.edu/" target="_blank">CRL Catalog</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-2 list-unstyled region region-footer-third">
+                        <ul  class="region-inner">
+                            <li><a href="http://www.crl.edu/collections/" target="_blank">Collections</a></li>
+                            <li><a href="http://www.crl.edu/services/" target="_blank">Services</a></li>
+                            <li><a href="http://www.crl.edu/archiving-preservation/" target="_blank">Archiving &amp; Preservation</a></li>
+                        </ul>
+                    </div>
+                    <div  class="col-md-3 social region region-footer-fourth">
+                        <div class="region-inner">
+                            <div class="social-btn"><span class="glyphicon glyphicon-twitter pale-green"></span><a href="https://twitter.com/CRL_global"> Follow us on Twitter </a> </div>
+                            <div class="social-btn"><span class="glyphicon glyphicon-facebook pale-green"></span><a href="https://www.facebook.com/CRLGlobalResources"> Check us out in Facebook </div>
+                            <div class="social-btn"><span class="glyphicon glyphicon-youtube pale-green"></span><a href="https://www.youtube.com/user/CRLdotEDU"> Watch our Events</a></div>
+                        </div>
+                    </div>
+
+                </div>
+            </footer>
+            <!---- /footer ----->
+       
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<?php
+$title_display = array('title' => 'Title',
+    'oclc' => 'OCLC',
+    'folder' => 'Type',
+    'tcreated' => 'Digitized on');
+?>
+<div class="page-header">
+    <h3><?php echo strtoupper(utf8_encode($collection->collectionname)); ?></h3>
+</div>
+<div class="col-md-12" id="accordion">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <?php
+                    echo "<thead>";
+                    foreach ($title_display as $field) {
+                        echo "<td>" . $field . "</td>";
+                    }
+                    echo "</thead>";
+
+                    foreach ($this->collection->titles as $title) :
+                        echo "<tr>";
+                        foreach ($title_display as $field => $value) {
+                            echo "<td>";
+                            if ($field == 'title') {
+                                printf("<a href='%s'>%s</a>", $this->url('dds-title', array('action' => 'index', 'id' => $title->tid)), $title->$field);
+                            } 
+                            elseif( $field == 'oclc') {
+                                ?>
+                                 <a href="http://catalog.crl.edu/search/a?searchtype=o&searcharg=<?php echo $title->oclc; ?>"  target="_blank" role="button"> Catalog Record </a>
+                            <?php
+                            
+                            } else {
+                                echo $title->$field;
+                            }
+                            echo "</td>";
+                        }
+                        echo "</tr>";
+                    endforeach;
+                    ?>
+                </table>
+                    <?php
+                    // add at the end of the file after the table
+                    echo $this->paginationControl(
+                            // the paginator object
+                            $collection->titles,
+                            // the scrolling style
+                            'sliding',
+                            // the partial to use to render the control
+                            array('partial/paginator.phtml', 'dds-collection'),
+                            // the route to link to when a user clicks a control link
+                            array(
+                        'route' => 'dds-collection',
+                        'id' => $cid,
+                            )
+                    );
+                    ?>
+            </div>
+        </div>
+    </div>
+</div>

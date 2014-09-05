@@ -1,0 +1,37 @@
+
+<div id="itemInfo">
+    <div class="panel panel-primary">
+         <div class="panel-heading">
+            <h4 class="panel-title">Copyright Protection Agreement</h4>
+        </div>
+        <div class="panel-body">
+             <p>The item you requested is subject to copyright restrictions. CRL provides an online version only to faculty, students and staff from CRL <a href="http://www.crl.edu/membership/members" >member libraries</a>, pursuant to the fair use provision of U.S. copyright law (17 U.S.C. 107).</p>
+
+                <p>By submitting this form you are agreeing to limit your uses of these materials to fair uses such as scholarship, research, education, criticism, commentary and other similar uses. Copyrighted images and texts are not to be reproduced, displayed, distributed, broadcast, or downloaded for other purposes without the expressed, written permission of the copyright owner.</p>
+                
+                <?php
+                $form = $this->form;
+                $form->setAttribute('action', $this->url('dds-title', array('action' => 'agreement', 'id' => $this->tid)));
+                $form->prepare();
+                $formLabel = $this->plugin('formLabel');
+
+                echo $this->form()->openTag($form);
+                echo $this->formHidden($form->get('tid'));
+                echo '<div class="form_element">';
+
+                $name = $form->get('agree');
+
+                echo $this->formCheckbox($name);
+                echo $formLabel->openTag() . $name->getOption('label');
+                echo $this->formElementErrors($name);
+                echo $formLabel->closeTag();
+
+                echo '</div>';
+                echo $this->formElement($form->get('security'));
+                echo $this->formSubmit($form->get('send'));
+                echo $this->form()->closeTag();
+                ?>
+                
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<?php echo $this->headTitle('DDS ' . $this->translate('Center for Research Libraries'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+
+<!-- Le styles -->
+<?php
+/* echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+  ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.css')
+  ->prependStylesheet($this->basePath() . '/css/bootstrap.css') */
+?>
+<div class="page-header">
+    <h3>
+            <?php echo $item->title->title; ?> 
+        <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".bs-tips-modal-lg"><span class="glyphicon glyphicon-book"></span> Tips on Image Display</button>
+        <a style="margin-right: 5px;"href="<?php echo $this->url('dds-title', array('action' => 'index', 'id' => $item->title->tid)) ?>" class="btn btn-default btn-xs pull-right"  role="button"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Back to Title </a>
+    </h3>
+</div>
+<div class="col-md-8" id="item">
+      <h4> <?php echo $item->item_text; ?> </h4>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <?php echo $item->item_text; ?> - Download
+        </div>
+        <div class="panel-body">
+            <?php if ($item->pages <= 100) { ?>
+                <div><strong>Quick Download Options:</strong></div>
+                <div><p><a href="<?php echo $this->url('dds-scan', array('action' => 'downloadall', 'id' => $item->iid, 'f' => $params->fromRoute('f'))); ?>">Download Full Issue </a>(<?php echo $item->pages; ?> Scans)</p></div>
+            <?php } ?>
+            <div>
+                <?php
+                $form = $this->form;
+                $form->setAttribute('action', $this->url('dds-scan', array('action' => 'download', 'id' => $item->iid, 'f' => $params->fromRoute('f'))));
+                $form->prepare();
+                $formLabel = $this->plugin('formLabel');
+
+                echo $this->form()->openTag($form);
+                echo $this->formHidden($form->get('id'));
+
+
+                $scan_from = $form->get('scan-from');
+                $scan_to = $form->get('scan-to');
+                echo $formLabel->openTag() . $scan_from->getOption('label');
+                echo $formLabel->closeTag();
+                echo $this->formElementErrors($scan_from);
+                echo $this->formElementErrors($scan_to);
+                echo '<div class="form_element">';
+                echo $formLabel->openTag() . "<span>From: </span>" . $formLabel->closeTag();
+                echo $this->formElement($scan_from);
+                echo $formLabel->openTag() . "  <span>To: </span>" . $formLabel->closeTag();
+                echo $this->formElement($scan_to);
+
+
+
+                echo '</div><br>';
+                echo $this->formElement($form->get('security'));
+                echo $this->formSubmit($form->get('send'));
+                echo sprintf('&nbsp;<a href="%s" class="btn btn-default btn-sm" role="button"><span class="glyphicon glyphicon-share-alt"></span> Back to Item </a>', $this->url('dds-item', array('action' => 'index', 'id' => $params->fromRoute('id'), 'f' => $params->fromRoute('f'))));
+                echo $this->form()->closeTag();
+                ?>
+
+            </div>
+            <small><strong>NOTE</strong>: Downloading using the options on this page requires Adobe Acrobat Reader software to be installed on your computer. Please <a href="http://www.adobe.com/products/reader.html" target="_blank">click here</a> to get the free reader. Please note that a single download of multiple pages may consist of up to 50 pages. Full issue download is only available for issues containing less than 100 pages. Your download may take some time to complete.</small>
+        </div>
+    </div>
+</div>

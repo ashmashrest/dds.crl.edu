@@ -1,0 +1,18 @@
+
+<div class="page-header">
+    <h3><?php echo $this->translate('Access Denied') ?></h3>
+</div>
+<div class="col-md-12 itemlist">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>Access to this content is restricted to users at CRL member institutions only. If your affiliated institution is a <a href="http://www.crl.edu/membership/members">CRL member</a> , then you should have access to this content via one of the following:</p>
+            <ul>
+                <li>On-campus IP addresses</li>
+                <li>Off-campus access using your institution <a href="http://www.crl.edu/membership/connecting-crl/off-campus-access">Proxy</a> Server</li>
+                <li><a href="https://sp.crl.edu/Shibboleth.sso/Login?target=<?= $this->serverUrl(true); ?>">Shibboleth login</a>, if your affiliated institution is in the dropdown list. Only CRL member institutions which belong to the <a href="http://www.incommon.org/participants/">InCommon federation</a> are listed. Visit <a href="">CRL Shibboleth</a> information page for more details.</li>  
+            </ul>
+            Please contact <a mailto:websystems@crl.edu>CRL Systems staff</a> if you have any questions. 
+
+        </div>
+    </div>
+</div>

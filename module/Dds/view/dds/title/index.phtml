@@ -1,0 +1,132 @@
+<div class="page-header">
+    <h3><?php echo $title->title; ?></h3>
+</div>
+
+<div class="col-md-4" id="accordion">
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading"><h4 class="panel-title">Title Information</h4></div>
+        <div class="panel-body">
+
+            <dl>
+                <?php if ($title->holdingrange) { ?>
+                    <dt>Digital Issues available</dt>
+                    <dd><?php echo $title->holdingrange; ?></dd><br>
+                <?php } ?>
+                <?php if ($title->folder) { ?>
+                    <dt>Type of Material</dt>
+                    <dd><?php echo $folders[$title->folder]; ?></dd><br>
+                <?php } ?>
+                <?php
+                if ($title->locationcode) {                   
+               
+                    ?>
+                    <dt>Supporting Program</dt>
+                    <dd><?php   
+                    $program = strtolower(substr($title->locationcode, 0, 4));
+                    switch ($program) {
+                        case 'camp':
+                            echo "Cooperative Africana Materials Project";
+                            break;
+                        case 'lamp':
+                            echo "Latin American Materials Project";
+                            break;
+                        case 'seam':
+                            echo "Southeast Asia Materials Project";
+                            break;
+                        case 'samp':
+                            echo "South Asia Materials Project";
+                            break;
+                        case 'memp':
+                            echo "Middle East Materials Project";
+                            break;
+                    } ?>
+                    </dd><br>
+                <?php } ?>
+<?php if ($rights->copyright || $rights->memberonly) { ?>
+                    <dt>Access Information </dt>
+                    <dd><?php echo ($rights->copyright) ? $rights->copyright : $rights->memberonly; ?></dd>
+<?php } ?>
+            </dl>
+            <div>
+                <a href="http://catalog.crl.edu/search/a?searchtype=o&searcharg=<?php echo $title->oclc; ?>" class="btn btn-default btn-sm" target="_blank" role="button"><span class="glyphicon glyphicon-folder-open"></span> Catalog Record </a>
+                <a href="http://www.surveymonkey.com/s.aspx?sm=vUvkQmcOqiW99VZgRWofnQ_3d_3d&c=TID<?php echo $title->tid; ?>" class="btn btn-default  btn-sm" target="_blank" role="button"><span class="glyphicon glyphicon-comment"></span> Give us feedback </a>
+            </div>            
+        </div>
+
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading collapsible">
+            <h4 class="panel-title">
+                <a class="glyphicon-plus handler"  data-toggle="collapse" data-parent="#accordion" href="#collapseTechinical"> Technical Information</a>
+            </h4>
+        </div>
+        <div id="collapseTechinical" class="panel-collapse collapse">
+
+
+
+            <div class="panel-body">
+
+                <dl>
+                    <dt>Resolution </dt>
+                    <dd><?php echo $collection->resolution; ?> </dd><br>
+
+                    <dt>Bit depth </dt>
+                    <dd><?php echo $collection->colordepth; ?></dd><br>
+
+<?php if ($collection->tiff) { ?>
+                        <dt>Master files</dt> 
+                        <dd> <?php echo $collection->tiff; ?></dd><br>
+
+                    <?php } ?>
+<?php if ($collection->pdf) { ?>
+
+                        <dt>Access files</dt> 
+                        <dd><?php echo $collection->pdf; ?></dd><br>
+
+<?php } ?>
+
+                    <dt>Scanning Equipment</dt> <dd><?php echo $collection->scanner; ?></dd><br>
+
+                </dl>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading collapsible"> 
+            <h4 class="panel-title ">
+                <a class="glyphicon-plus handler" data-toggle="collapse" data-parent="#accordion" href="#collapseRights"> Rights Information</a>
+            </h4></div>
+        <div id="collapseRights" class="panel-collapse collapse">
+            <div class="panel-body">
+                <p>Materials digitized by the Center for Research Libraries are intended for the personal educational and research use of students, scholars, and other researchers of the CRL member community. Copyrighted images and texts may not to be reproduced, displayed, distributed, broadcast, or downloaded for other purposes without the expressed, written permission of the copyright owner.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-8 itemlist">
+    <div class="panel panel-default">
+        <div class="panel-body">
+<?php echo $this->items ?>
+        </div>
+        <div class="panel-footer"><small><em>If the electronic version of this document doesn't meet your needs, you may request a loan of the original by contacting your local library's interlibrary loan department.</em></small>
+        </div>
+    </div>
+</div>
+
+
+<?php echo $this->agreement; ?>
+<?php $this->InlineScript()->captureStart() ?> 
+$( document ).ready(function() {
+	 
+	$('.handler').click(function() {      
+            alert($( this ).class());
+		$( this ).toggleClass( "expand glyphicon-minus" );
+	});
+      
+});
+<?php $this->InlineScript()->captureEnd() ?>

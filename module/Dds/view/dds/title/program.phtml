@@ -1,0 +1,57 @@
+<div class="page-header">
+    <h3><?php echo strtoupper(utf8_encode($program)); ?></h3>
+</div>
+
+<div class="col-md-12" id="accordion">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive">
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Program</th>
+                            <th>Type</th>
+                            <th>Catalog</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($this->titles as $title) :
+                            ?>
+                            <tr>
+                                <td> <?php printf("<a href='%s'>%s</a>", $this->url('dds-title', array('action' => 'index', 'id' => $title->tid)), $title->title); ?></td>
+                                <td><?= $title->locationcode; ?></td>
+                                <td><?= $folders[$title->folder]; ?></td>
+                                <td><a href="http://catalog.crl.edu/search/a?searchtype=o&searcharg=<?php echo $title->oclc; ?>"  target="_blank" role="button"> Catalog Record </a></td>
+
+                            </tr>
+                            <?php
+                        endforeach;
+                        ?>
+
+                    </tbody>
+
+                </table>
+                <?php
+                // add at the end of the file after the table
+                echo $this->paginationControl(
+                        // the paginator object
+                        $titles,
+                        // the scrolling style
+                        'sliding',
+                        // the partial to use to render the control
+                        array('partial/paginator.phtml', 'dds-programs'),
+                        // the route to link to when a user clicks a control link
+                        array(
+                    'route' => 'dds-programs',
+                    'id' => $program,
+                        )
+                );
+                ?>
+            </div>
+        </div>
+    </div>
+</div>

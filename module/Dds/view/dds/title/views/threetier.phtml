@@ -1,0 +1,79 @@
+<!-- TODO : We need to move this to a different template so that we can handle the views better-->    
+<p><span class='glyphicon glyphicons_plus'></span> The following items are available online:</p>
+
+
+<?php
+$sorted = "";
+$itemsArray = $items->toArray();
+foreach ($itemsArray as $item) {
+    
+        $item_link = sprintf("<a href='%s'>%s</a>",
+                $this->url('dds-item', array('action' => 'index', 'id' => $item['iid'])),
+                $item['part2']);
+
+
+    if ($item['pages'] > 0) {
+        $item_link .= sprintf(" ( %s scans)", $item['pages']);
+    }
+
+    $item_link .= $item['copyright'];
+
+    $sorted[$item['year']][$item['part1']][] = $item_link;
+    unset($item_link);
+}
+ksort($sorted);
+?>
+<?php
+echo '<ul class="list-group">';
+
+// First Tier Loop
+foreach ($sorted as $year => $items) {
+    printf("<li class='list-group-item'>
+                <span class='handler-first'> 
+                    <a href='#' onclick='return false;'> %s </a>
+                </span>
+                    <ul class='child'> ", $year);
+    $counter = 0;
+    //Second Tier Loop
+    foreach ($items as $part1 => $links) {
+        $counter = $counter + count($links);
+        printf("<li class='list-group-item'>
+                    <span class='handler-second'>
+                        <a href='#' onclick='return false;'>%s</a>
+                    </span> 
+                    <span class='badge'>%d</span>
+                        <ul class='child'>", $part1, count($links));
+
+        foreach ($links as $key => $link) {
+            printf("<li>%s</li>", $link);
+        }
+
+        print_r("</ul></li> ");
+    }
+    printf("</ul> <span class='badge badge-first'>%d</span></li>", $counter);
+}
+printf("</ul>");
+?>
+
+<?php $this->InlineScript()->captureStart() ?> 
+$( document ).ready(function() {
+//Second Tier
+$('.handler-second').siblings('.child').hide();
+
+$('.handler-second').click(function() {
+$(this).siblings().slideToggle();
+$( this ).toggleClass( "expand" );
+});
+//First Tier
+$('.handler-first').siblings('.child').hide();
+
+$('.handler-first').click(function() {
+$(this).siblings().slideToggle();
+$( this ).toggleClass( "expand" );
+});
+
+});
+if (navigator.appVersion.indexOf("Chrome/") != -1) {
+$(".badge-first").css('margin-top','-15px');
+}
+<?php $this->InlineScript()->captureEnd() ?>

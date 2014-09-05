@@ -1,0 +1,50 @@
+AuthType Shibboleth
+ShibRequireSession Off
+ShibUseHeaders On
+require shibboleth
+
+RewriteEngine On
+
+#Redirect Titles from old ASP to New clean URL
+RewriteCond %{QUERY_STRING} ^tid=([^&]+)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^TID=([^&]+)$ [NC]
+RewriteRule ^(crldelivery|CRLdelivery|copyAgreeMembers|Crldelivery)\.asp$ /crldelivery/%1? [R=301,L]
+
+#Redirect Item streaming from old ASP
+RewriteCond %{QUERY_STRING} ^iid=([^&]+)&f=([^&]+)$ [NC]
+RewriteRule ^loadStream\.asp$ /item/%1/%2? [R=301,L]
+
+#Redirect Calendar item view to the title page since currently the news item display uses the item id
+RewriteCond %{QUERY_STRING} ^tid=([^&]+)&pubdate=([^&]+)$ [NC]
+RewriteRule ^issue\.asp$ /crldelivery/%1? [R=301,L]
+
+#Redirect for IPCHECK
+RewriteCond %{QUERY_STRING} ^ip=([^&]+)$ [NC]
+RewriteRule ^IPcheck\.asp$ /ipcheck/%1? [R=301,L]
+
+# Forcing HTTPS
+#RewriteCond %{HTTPS} !=on [OR]
+#RewriteCond %{SERVER_PORT} 80
+# Pages to Apply
+#RewriteCond %{REQUEST_URI} ^something_secure [OR]
+#RewriteCond %{REQUEST_URI} ^something_else_secure
+#RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+# The following rule tells Apache that if the requested filename
+# exists, simply serve it.
+RewriteCond %{REQUEST_URI} !^/Shibboleth.sso$
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+# The following rewrites all other queries to index.php. The 
+# condition ensures that if you are using Apache aliases to do
+# mass virtual hosting, the base path will be prepended to 
+# allow proper resolution of the index.php file; it will work
+# in non-aliased environments as well, providing a safe, one-size 
+# fits all solution.
+RewriteCond %{REQUEST_URI} !^/Shibboleth.sso$
+RewriteCond %{REQUEST_URI}::$1 ^(/.+)(.+)::\2$
+RewriteRule ^(.*) - [E=BASE:%1]
+RewriteRule ^(.*)$ %{ENV:BASE}index.php [NC,L]
+
+

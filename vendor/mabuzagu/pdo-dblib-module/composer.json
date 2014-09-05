@@ -1,0 +1,20 @@
+{
+    "name": "mabuzagu/pdo-dblib-module",
+    "description": "MSSQL dbib module for zf2",
+    "type": "library",
+    "keywords": [
+        "dblib", "mssql", "zf2"
+    ],
+    "authors": [
+        {
+            "name": "Gugu Mabuza",
+            "email": "mabuzagu@gmail.com",
+            "homepage": "https://broad.msu.edu"
+        }
+    ],
+	"autoload": {
+        "classmap": [
+                "./Module.php"
+        ]
+    }
+}

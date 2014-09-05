@@ -1,0 +1,29 @@
+<!-- THIS IS NOT IN USE -->
+<div style="margin-bottom:50px;"><img src="/img/logo.jpeg" alt="Center for Research Libraries" border="0" /></div>
+<p>The Center for Research Libraries scans to provide digital delivery of its holdings. In
+    some cases problems with the quality of the original document or microfilm reproduction
+    may result in a lower quality scan, but it will be legible. In some cases pages may be
+    damaged or missing. Files include OCR (machine searchable text) when the quality of
+    the scan and the language or format of the text allows.</p>
+<p><strong>If preferred, you may request a loan by contacting Center for Research Libraries
+        through your Interlibrary Loan Office.
+    </strong></p>
+<h3>Rights and usage</h3>
+<p>Materials digitized by the Center for Research Libraries are intended for the personal
+    educational and research use of students, scholars, and other researchers of the CRL
+    member community. Copyrighted images and texts may not to be reproduced, displayed,
+    distributed, broadcast, or downloaded for other purposes without the expressed, written
+    permission of the copyright owner.
+</p>
+<p><strong>Center for Research Libraries</strong><br>
+    <strong>Identifier: <?php echo $identifier; ?></strong><br>
+    <strong>Range: <?php echo 'Scans ' . $from . ' - ' . $to; ?></strong><br>
+    <strong>Downloaded on: <?php
+echo $this->dateFormat(
+        new DateTime(), IntlDateFormatter::MEDIUM, // date
+        IntlDateFormatter::MEDIUM, // time
+        "en_US"
+); 
+?></strong></p>
+
+
