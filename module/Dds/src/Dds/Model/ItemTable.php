@@ -298,10 +298,13 @@ class ItemTable {
 
         if ($this->f) {
 
-            if ($this->item->perpage)
+            if ($this->item->perpage) {
                 $this->fileLocation = $folder . "/" . sprintf("%03d", $this->item->f) . ".pdf";
-            else
+            } else if($this->item->f == "toc"){
                 $this->fileLocation = $folder . "/" . $this->item->filename . "-" . $this->item->f . ".pdf";
+            } else {
+                $this->fileLocation = $folder . "/" . $this->item->filename . "-f" . $this->item->f . ".pdf";
+            }   
         }
 
         if (!$this->fileLocation)
