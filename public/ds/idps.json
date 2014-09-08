@@ -1,0 +1,110 @@
+[
+    {
+        "entityID": "urn:mace:incommon:osu.edu",
+        "DisplayNames": [
+            {
+                "value": "Ohio State University",
+                "lang": "en"
+            }
+        ],
+        "InformationURLs": [
+            {
+                "value": "https://webauth.service.ohio-state.edu/info.html",
+                "lang": "en"
+            }
+        ],
+        "PrivacyStatementURLs": [
+            {
+                "value": "http://ocio.osu.edu/policy/policies",
+                "lang": "en"
+            }
+        ],
+        "Logos": [
+            {
+                "value": "https://webauth.service.ohio-state.edu/images/osu_mdui.png",
+                "height": "83",
+                "width": "83",
+                "lang": "en"
+            }
+        ]
+    },
+    {
+        "entityID": "https://shibidp.cit.cornell.edu/idp/shibboleth",
+        "DisplayNames": [
+            {
+                "value": "Cornell University",
+                "lang": "en"
+            }
+        ]
+    },
+    {
+        "entityID": "urn:mace:incommon:ucop.edu",
+        "DisplayNames": [
+            {
+                "value": "University of California - Office of the President",
+                "lang": "en"
+            }
+        ]
+    },
+    {
+        "entityID": "urn:mace:incommon:uci.edu",
+        "DisplayNames": [
+            {
+                "value": "University of California-Irvine",
+                "lang": "en"
+            }
+        ]
+    },
+    {
+        "entityID": "urn:mace:incommon:washington.edu",
+        "DisplayNames": [
+            {
+                "value": "University of Washington",
+                "lang": "en"
+            }
+        ],
+        "Descriptions": [
+            {
+                "value": "The University of Washington IdP enables standards-based federation for the UW community.\n",
+                "lang": "en"
+            }
+        ],
+        "InformationURLs": [
+            {
+                "value": "https://wiki.cac.washington.edu/x/fiOD",
+                "lang": "en"
+            }
+        ],
+        "Logos": [
+            {
+                "value": "https://wiki.cac.washington.edu/download/attachments/8594302/uw.png",
+                "height": "63",
+                "width": "128",
+                "lang": "en"
+            }
+        ]
+    },
+    {
+        "entityID": "urn:mace:incommon:uchicago.edu",
+        "DisplayNames": [
+            {
+                "value": "University of Chicago",
+                "lang": "en"
+            }
+        ],
+        "Descriptions": [
+            {
+                "value": "The University of Chicago Web Single Sign-On servce",
+                "lang": "en"
+            }
+        ],
+        "Logos": [
+            {
+                "value": "https://shibboleth2.uchicago.edu/idp/shib_img/idplogo.png",
+                "height": "83",
+                "width": "350",
+                "lang": "en"
+            }
+        ]
+    }
+ ]
