@@ -12,9 +12,7 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Program</th>
                             <th>Type</th>
-                            <th>Catalog</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,13 +21,10 @@
                             ?>
                             <tr>
                                 <td> <?php printf("<a href='%s'>%s</a>", $this->url('dds-title', array('action' => 'index', 'id' => $title->tid)), $title->title); ?></td>
-                                <td><?= $title->locationcode; ?></td>
                                 <td><?= $folders[$title->folder]; ?></td>
-                                <td><a href="http://catalog.crl.edu/search/a?searchtype=o&searcharg=<?php echo $title->oclc; ?>"  target="_blank" role="button"> Catalog Record </a></td>
-
-                            </tr>
-                            <?php
-                        endforeach;
+                                </tr>
+                                <?php
+                            endforeach;
                         ?>
 
                     </tbody>
