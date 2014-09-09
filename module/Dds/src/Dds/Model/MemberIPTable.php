@@ -73,7 +73,13 @@ class MemberIPTable {
      * @return type
      */
     public function ipCheck($ipaddress) {
+        if (!$ipaddress) {
+            $remote = new RemoteAddress();
+            $ipaddress = $remote->getIpAddress();
+        }
+        
         $this->user['ipaddress'] = $ipaddress;
+
         //Check IP in member table
         if (!$this->ipData)
             $this->checkIPTable($ipaddress, 'memberIP');
@@ -97,7 +103,6 @@ class MemberIPTable {
         return $this->user;
     }
 
- 
     /**
      * Function for iterating the IP tables and get the member information as well
      * 
@@ -122,7 +127,7 @@ class MemberIPTable {
         $this->ipData = $result->current();
         return $this->ipData;
     }
-    
+
     /**
      * Check the AMP memberships 
      * 
@@ -154,13 +159,14 @@ class MemberIPTable {
 
         return $ampArray;
     }
+
     /**
      * Get the list of Shibboleth EntityIDs to populate in the json fed to discovery
      * 
      * @return type
      */
     public function getIdps() {
-        
+
         $sql = "SELECT Shibboleth as entityID, MemberNameDisplay as DisplayNames FROM members "
                 . "WHERE members.Shibboleth  IS NOT NULL  "
                 . "AND CurrentCRLmember=1 "
@@ -169,7 +175,7 @@ class MemberIPTable {
         $statement = $this->tableGateway->query($sql);
 
         $result = $statement->execute();
-        
+
         return $result;
     }
 
