@@ -18,7 +18,7 @@ $this->headTitle($item->title->title);
     <h3>
         <?php echo $item->title->title; ?>  
 
-       
+
         <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".bs-help-modal-lg"><span class="glyphicon glyphicon-info-sign"></span> Viewer Information</button>
         <a style="margin-right: 5px;"href="<?php echo $this->url('dds-title', array('action' => 'index', 'id' => $item->title->tid)) ?>" class="btn btn-default btn-xs pull-right"  role="button"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Back to Title </a>
     </h3> 
@@ -27,12 +27,11 @@ $this->headTitle($item->title->title);
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Viewer Information</h4>
+                    <h4 class="modal-title" id="myModalLabel">PDF Viewer Information</h4>
                 </div>
                 <div class="modal-body">
-                    <p>The viewer might not work with older browsers that do not have HTML 5 support. If you are having problems to view the image, please try another browser.
-                    You can also download the images and user your acrobat reader to view the downloaded PDF. </p>
-                    Please contact <a href="mailto:ashrestha@crl.edu">CRL Systems</a> if the issue persists. Thank you for your patience.
+                    <p>The PDF viewer deployed on this site works the best with browsers supporting HTML 5. Using an older Web browser on your computer could cause difficulties in viewing the page images. In that case, please upgrade your browser or try to open the page from a different browser. Or, you may download the PDF files first, and then open it with your Acrobat Reader.  </p>
+                    <p>If the issue persists, please contact <a href="mailto:ashrestha@crl.edu">CRL Systems</a> for additional instructions. Thank you for your patience. 
                     </p>
                 </div>
 
@@ -49,7 +48,7 @@ $this->headTitle($item->title->title);
     <div class="panel panel-default" id="ddsViewerPanel">
 
         <div class="panel-heading" id="ddsViewerHead">
-           
+
 
             <div id="outerContainer" class="loadingInProgress" >
 
@@ -97,11 +96,11 @@ $this->headTitle($item->title->title);
 
 
 
-                            
-                            <button id="previousIssue" class="secondaryToolbarButton firstPage" title="Go to Previous Issue" tabindex="24" data-l10n-id="previous_issue" onclick="window.location.href = '<?php echo ($this->item_previous) ? $this->url('dds-item', array('action' => 'index', 'id' => $this->item_previous->iid)) : "#"; ?>';" <?php echo ($this->item_previous)?'':'disabled'; ?>>
+
+                            <button id="previousIssue" class="secondaryToolbarButton firstPage" title="Go to Previous Issue" tabindex="24" data-l10n-id="previous_issue" onclick="window.location.href = '<?php echo ($this->item_previous) ? $this->url('dds-item', array('action' => 'index', 'id' => $this->item_previous->iid)) : "#"; ?>';" <?php echo ($this->item_previous) ? '' : 'disabled'; ?>>
                                 <span data-l10n-id="previous_issue_label">Go to Previous Issue</span>
                             </button>
-                            <button id="nextIssue" class="secondaryToolbarButton lastPage" title="Go to Next Issue" tabindex="25" data-l10n-id="next_issue" onclick="window.location.href = '<?php echo ($this->item_next) ? $this->url('dds-item', array('action' => 'index', 'id' => $this->item_next->iid)) : "#" ?>';" <?php echo ($this->item_next)?'':'disabled'; ?>>
+                            <button id="nextIssue" class="secondaryToolbarButton lastPage" title="Go to Next Issue" tabindex="25" data-l10n-id="next_issue" onclick="window.location.href = '<?php echo ($this->item_next) ? $this->url('dds-item', array('action' => 'index', 'id' => $this->item_next->iid)) : "#" ?>';" <?php echo ($this->item_next) ? '' : 'disabled'; ?>>
                                 <span data-l10n-id="next_issue_label">Go to Next Issue</span>
                             </button>
 
