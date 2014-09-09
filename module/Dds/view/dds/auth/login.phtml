@@ -13,7 +13,7 @@
                     You are authorized to access the resources in this site. You do not need to authenticate again. 
                 </div>
                 <?php
-            }
+            } else {
             ?>
             <div id="idpSelect"></div>
             <script src="ds/idpselect_config.js" type="text/javascript" language="javascript"></script>
@@ -43,7 +43,7 @@ echo $this->headLink()->appendStylesheet($this->basePath() . 'ds/idpselect.css')
             </noscript>
 
             <small> Only CRL member institutions which belong to the <a href="http://www.incommon.org/participants/">InCommon federation</a> are included. Visit <a href="http://www.crl.edu/shibboleth">CRL Shibboleth</a> information page for more details.</small>
-<?php // } ?>
+<?php  } ?>
         </div>
     </div>
 </div>
