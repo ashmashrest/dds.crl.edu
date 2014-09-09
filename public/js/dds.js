@@ -76,3 +76,9 @@ var getAcrobatInfo = function() {
     acrobatVersion: getAcrobatVersion()
   };
 };
+
+$(window).load(function() {
+ // Switch the IDP list to be the default for Shibboleth Discovery
+ $('#idpSelectIdPEntryTile').css('display','none');
+ $('#idpSelectIdPListTile').css('display','inline');
+});
