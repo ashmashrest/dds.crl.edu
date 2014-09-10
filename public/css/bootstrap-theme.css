@@ -42,7 +42,6 @@
   background-image: linear-gradient(to bottom, #f47a20 0%, #e05400 100%);
   background-repeat: repeat-x;
   border-color: #da7c0c;
-  border-color: #ffe0e0e0;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#e05400', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 
@@ -50,13 +49,13 @@
 
 .btn-default:hover,
 .btn-default:focus {
-  background-color: #e05400;
+  background-color: #e05400 ;
   background-position: 0 -15px;
 }
 
 .btn-default:active,
 .btn-default.active {
-  background-color: #e0e0e0;
+  background-color: #e05400 ;
   border-color: #dbdbdb;
 }
 
@@ -92,14 +91,14 @@
 
 .btn-success:hover,
 .btn-success:focus {
-  background-color: #419641;
+  background-color: #8ca36b;
   background-position: 0 -15px;
 }
 
 .btn-success:active,
 .btn-success.active {
-  background-color: #419641;
-  border-color: #3e8f3e;
+  background-color: #8ca36b;
+  border-color: #8ca36b;
 }
 
 .btn-warning {
