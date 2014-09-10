@@ -12,19 +12,13 @@
  */
 
 return array(    
-    'site' => array(
-        'name' => 'Digital Delivery System',
-        'admin-email' =>  'ashrestha@crl.edu',
-        'access-email' => 'ads@crl.edu',        
-    ),
-    
+       
   
     'db'=> array( 
     'adapters'=>array(
         'adapter' => array(
             'platform'       => 'SqlServer',
             'driver'         => 'Pdo',
-            'dsn'            => 'dblib:host=CRLMsSqlServer;dbname=DDSregistry;charset=utf8;',
             'pdotype'       => 'dblib',
             'charset' => 'UTF-8',
             "driver_options" => array(
@@ -34,7 +28,6 @@ return array(
         'adapter2' => array(
             'platform'       => 'SqlServer',
             'driver'         => 'Pdo',
-            'dsn'            => 'dblib:host=CRLMsSqlServer;dbname=members;charset=utf8;',
             'pdotype'       => 'dblib',
             'charset' => 'UTF-8',
              ),

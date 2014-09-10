@@ -11,9 +11,14 @@
 
 
 return array(
+    'site' => array(
+        'name' => '***',
+        'admin-email' =>  'example@email.com',
+        'access-email' => 'example@email.com',        
+    ),
 
-    'TempFolder'=>'***',
-    'repository' => '***',
+    'TempFolder'=>'/path/to/tmp/folder',
+    'repository' => '/path/to/repository/data',
   
     'db'=> array( 
     'adapters'=>array(
