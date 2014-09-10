@@ -13,7 +13,7 @@ foreach ($itemsArray as $item) {
 
 
     if ($item['pages'] > 0) {
-        $item_link .= sprintf(" ( %s scans)", $item['pages']);
+        $item_link .= sprintf(" (%s scans)", $item['pages']);
     }
 
     $item_link .= $item['copyright'];
@@ -41,7 +41,7 @@ foreach ($sorted as $year => $items) {
                     <span class='handler-second'>
                         <a href='#' onclick='return false;'>%s</a>
                     </span> 
-                    <span class='badge'>%d</span>
+                    <span class='badge'>%d Items</span>
                         <ul class='child'>", $part1, count($links));
 
         foreach ($links as $key => $link) {
@@ -50,7 +50,7 @@ foreach ($sorted as $year => $items) {
 
         print_r("</ul></li> ");
     }
-    printf("</ul> <span class='badge badge-first'>%d</span></li>", $counter);
+    printf("</ul> <span class='badge badge-first'>%d Items</span></li>", $counter);
 }
 printf("</ul>");
 ?>
