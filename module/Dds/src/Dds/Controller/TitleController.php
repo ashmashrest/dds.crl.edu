@@ -63,7 +63,7 @@ class TitleController extends AbstractActionController {
 
         //Get the access information for the title
         $this->rights->memberonly = ($this->itemTable->getRights($this->tid, 'MemOnly')) ? $this->itemTable->getRights($this->tid, 'MemOnly')->memberonly : false;
-        $this->rights->copyright = ($this->itemTable->getRights($this->tid, 'CopyRt')) ? $this->itemTable->getRights($this->tid, 'CopyRt')->copyright . ' Copyrighted  ' : false;
+        $this->rights->copyright = ($this->itemTable->getRights($this->tid, 'CopyRt')) ?  ' Subject to copyright restrictions  ' : false;
 
         //Get the view type of the Title
         $viewType = $this->views[(int) $title->viewtype];
