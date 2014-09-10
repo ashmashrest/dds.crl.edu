@@ -52,7 +52,7 @@ class Item {
         $this->icreated = (isset($data['iCreated'])) ? $data['iCreated'] : null;
         $this->noocr = (isset($data['NoOCR'])) ? $data['NoOCR'] : null;
         $this->timestamp = (isset($data['STimeStamp'])) ? $data['STimeStamp'] : null;
-        $this->memberonly = (isset($data['Rights']) && $data['Rights'] == "MemOnly") ? "Member Use Only" : null;
+        $this->memberonly = (isset($data['Rights']) && $data['Rights'] == "MemOnly") ? "Restricted Access" : null;
         $this->copyright = (isset($data['Rights']) && $data['Rights'] == "CopyRt") ? " &copy;" : null;
         $this->f = null;
         $this->perpage = (isset($data['PerPage'])) ? $data['PerPage'] : False;
