@@ -40,7 +40,7 @@ while ($item = $items->current()) {
     // Add TOC if the TOC field is not null
     if ($item->toc) {
         echo "<li  class='list-group-item'>";
-        printf("<a href='%s'>Table of Content </a> %s", $this->url('dds-item', array('action' => 'index', 'id' => $item->iid, 'f' => 'toc')), $item->copyright);
+        printf("<a href='%s'>Table of Contents </a> %s", $this->url('dds-item', array('action' => 'index', 'id' => $item->iid, 'f' => 'toc')), $item->copyright);
         echo "</li>";
     }
     ?>                 
