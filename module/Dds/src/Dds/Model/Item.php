@@ -43,7 +43,7 @@ class Item {
         $this->filename = (isset($data['FileName'])) ? $data['FileName'] : null;
         $this->digitalpno = (isset($data['DigitalPNo'])) ? $data['DigitalPNo'] : null;
         $this->pages = (isset($data['Pages'])) ? $data['Pages'] : null;
-        $this->rights = (isset($data['Rights'])) ? $data['Rights'] : null;
+        $this->rights = (isset($data['Rights'])) ? trim($data['Rights']) : null;
         $this->sortorder = (isset($data['SortOrder'])) ? $data['SortOrder'] : null;
         $this->fileuneven = (isset($data['FileUneven'])) ? $data['FileUneven'] : null;
         $this->toc = (isset($data['TOC'])) ? $data['TOC'] : null;
