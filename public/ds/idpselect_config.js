@@ -23,7 +23,7 @@ function IdPSelectUIParms(){
                                      // start showing if alwaysShow is false
     this.myEntityID = null;          // If non null then this string must match the string provided in the DS parms
     this.preferredIdP = null;        // Array of entityIds to always show
-    this.hiddenIdPs = null;          // Array of entityIds to delete
+    this.hiddenIdPs = new Array("https://idp.crl.edu/idp/shibboleth");          // Array of entityIds to delete
     this.ignoreKeywords = false;     // Do we ignore the <mdui:Keywords/> when looking for candidates
     this.samlIdPCookieTTL = 730;     // in days
     this.testGUI = false;
