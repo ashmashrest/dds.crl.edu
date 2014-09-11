@@ -55,54 +55,70 @@ class AssetData extends AbstractPlugin {
         return $files;
     }
 
-    public function streamPDF($uri, $disposition = "inline", $fileName ="download") {
+    /**
+     * 
+     * Check access permission for each item
+     * @param type $item
+     * @return boolean
+     */
+    public function Authorize($item) {
+
+        $user_session = $this->getSessContainer();
         
-
-            if(!is_file($uri)) {
-                //throw exception for now
-                throw new \Exception("Cannot locate the file requested file. Please contact the <a href='mailto:asd@crl.edu'>Access Services Department</a>." );
-            }
-
-            $fileContents = file_get_contents($uri);
-
-            $response = new \Zend\Http\Response\Stream();
-            $response->setContent($fileContents);
-
-           $headers = new \Zend\Http\Headers();
-            $headers->clearHeaders()
-                ->addHeaderLine('Content-Type', 'application/pdf')
-                ->addHeaderLine('Content-Disposition', $disposition.'; filename="' . $fileName . '"');
-            $response->setHeaders($headers);
-            $response->setStream(fopen($uri, 'r'));
-            $response->setStatusCode(200);
-            
-            return $response;
-  
+        //authorize if the item is Public domain 
+       // if ($item->rights == 'PubDm')
+         //   return true;
+        // authorize if the user is from a member institute 
+        if ($user_session->user['user']['role'] == 'member') {
+            return true;
+        }
+        // authorize if the title is has location code and the non-member is AMP member having rights
+        if (isset($item->title->locationcode) && in_array($item->title->locationcode, $user_session->user['user']['amp'])) {
+            return true;
+        }
+        return false;
     }
-    
+
+    public function streamPDF($uri, $disposition = "inline", $fileName = "download") {
+
+
+        if (!is_file($uri)) {
+            //throw exception for now
+            throw new \Exception("Cannot locate the file requested file. Please contact the <a href='mailto:asd@crl.edu'>Access Services Department</a>.");
+        }
+
+        $fileContents = file_get_contents($uri);
+
+        $response = new \Zend\Http\Response\Stream();
+        $response->setContent($fileContents);
+
+        $headers = new \Zend\Http\Headers();
+        $headers->clearHeaders()
+                ->addHeaderLine('Content-Type', 'application/pdf')
+                ->addHeaderLine('Content-Disposition', $disposition . '; filename="' . $fileName . '"');
+        $response->setHeaders($headers);
+        $response->setStream(fopen($uri, 'r'));
+        $response->setStatusCode(200);
+
+        return $response;
+    }
+
     public function mergePDF($files) {
-        
+
         $pdfNew = new PdfDocument();
         $extractor = new Zend_Pdf_Resource_Extractor();
 
-        //load pdf 1 from a string
-      //  $pdf1 = Zend_Pdf::parse(parent::renderPDF());
-        //Clone pages of first pdf document and add the pages to the new pdf object
-    //    foreach ($pdf1->pages as $p) $pdfNew->pages[] = $extractor->clonePage($p);
-
-        //load pdf 2 from a file
-        foreach ( $files as $file) {
-            $pdf  = PdfDocument::load($file);
-            //Clone pages of second pdf document and add the pages to the new pdf object
-            foreach ($pdf->pages as $p) $pdfNew->pages[] = $extractor->clonePage($p);
-
+        foreach ($files as $file) {
+            $pdf = PdfDocument::load($file);
+            foreach ($pdf->pages as $p)
+                $pdfNew->pages[] = $extractor->clonePage($p);
         }
 
         //output new pdf as a string
         return $pdfNew->render();
     }
 
-    public function doAuthorization($e) {  
+    public function doAuthorization($e) {
         //setting ACL...
         $acl = new Acl();
         //add role ..
@@ -115,29 +131,14 @@ class AssetData extends AbstractPlugin {
         $acl->addResource(new Resource('dds-item'));
         $acl->addResource(new Resource('dds-scan'));
 
-      
-        $acl->allow('nonmember', array('home'), array('view') );
-        $acl->deny('nonmember', array('dds-title', 'dds-item', 'dds-scan'), array('view') );
-        $acl->allow('member', array('home', 'dds-title', 'dds-item', 'dds-scan'), array('view') );
-        
-        //admin is child of user, can publish, edit, and view too !
-        //$acl->allow('admin', array('DDS'), array('publish', 'edit')
-           //  );
 
-        $route = $e -> getRouteMatch() -> getMatchedRouteName();
-      
-         $role = (!$this->getSessContainer()->user['user']['role'] ) ? 'nonmember' : $this->getSessContainer()->user['user']['role'];
-       /* if (!$acl->isAllowed($role, $route, 'view')) {
-            $router = $e->getRouter();
-           // $url    = $router->assemble(array(), array('name' => 'home'));
+        $acl->allow('nonmember', array('home'), array('view'));
+        $acl->deny('nonmember', array('dds-title', 'dds-item', 'dds-scan'), array('view'));
+        $acl->allow('member', array('home', 'dds-title', 'dds-item', 'dds-scan'), array('view'));
 
-            $response = $e->getResponse();
-            $response->setStatusCode(404);
-            //redirect to login route...
-            /* change with header('location: '.$url); if code below not working */
-          //   $response->getHeaders()->addHeaderLine('Location', $url);
-           /* $e->stopPropagation();
-        }*/
+        $route = $e->getRouteMatch()->getMatchedRouteName();
+
+        $role = (!$this->getSessContainer()->user['user']['role'] ) ? 'nonmember' : $this->getSessContainer()->user['user']['role'];
     }
 
 }

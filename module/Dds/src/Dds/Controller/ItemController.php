@@ -48,16 +48,11 @@ class ItemController extends AbstractActionController {
 
         //Get user session information
         $user_session = new Container('user');
-       
 
         //Check if the user has access else redirect them to 403 page
         // TODO: Need a better access control system
-      
-        if (($this->item->title->locationcode == NULL && $user_session->user['user']['role'] != 'member')
-            || $this->item->title->locationcode != NULL && $user_session->user['user']['role'] == 'nonmember' 
-            || ($this->item->title->locationcode != NULL 
-                    && ($user_session->user['user']['role'] == 'amp' 
-                    && !in_array($this->item->title->locationcode, $user_session->user['user']['amp'] ) ) ) ) {         
+        $this->asset = $this->plugin('AssetData');
+        if ( !$this->asset->authorize($this->item) ) {         
 
             $view = new ViewModel();
             $view->setTemplate('error/403');
