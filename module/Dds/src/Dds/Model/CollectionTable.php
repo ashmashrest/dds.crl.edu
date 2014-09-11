@@ -63,6 +63,7 @@ class CollectionTable
                 $this->collection->scanner = "Mekel Mach VII fiche scanner";
                 break;
             default:
+                $this->collection->scanner = "N/A";
                 break;
         }
         return $this->collection;
