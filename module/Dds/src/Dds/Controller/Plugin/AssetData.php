@@ -66,8 +66,8 @@ class AssetData extends AbstractPlugin {
         $user_session = $this->getSessContainer();
         
         //authorize if the item is Public domain 
-       // if ($item->rights == 'PubDm')
-         //   return true;
+        if ($item->rights == 'PubDm')
+            return true;
         // authorize if the user is from a member institute 
         if ($user_session->user['user']['role'] == 'member') {
             return true;
