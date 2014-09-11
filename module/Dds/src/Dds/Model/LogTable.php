@@ -70,10 +70,11 @@ class LogTable {
 
         $data = array(
             'ItemLink' => $itemtable->item->iid,
-            'InstLink' => ($user['instid'])? $user['instid']: null,
+            'InstLink' => ($user['instid'])? $user['instid']: 0,
             'IPaddress' => $user['ipaddress'],
             'DateTimeStamp' => $datatime->format('m/d/Y h:i:s A'),
         );
+        
 
         if (!$this->tableGateway->insert($data)) {
             throw new \Exception('Cannot add log');
