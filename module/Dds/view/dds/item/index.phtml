@@ -18,8 +18,7 @@ $this->headTitle($item->title->title);
     <h3>
         <?php echo $item->title->title; ?>  
 
-
-        <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".bs-help-modal-lg"><span class="glyphicon glyphicon-info-sign"></span> Viewer Information</button>
+         <a class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".bs-help-modal-lg" ><span class="glyphicon glyphicon-share-alt"></span> Viewer Information </a>
         <a style="margin-right: 5px;"href="<?php echo $this->url('dds-title', array('action' => 'index', 'id' => $item->title->tid)) ?>" class="btn btn-default btn-xs pull-right"  role="button"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Back to Title </a>
     </h3> 
     <div class="modal fade bs-help-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
