@@ -61,21 +61,24 @@ class AssetData extends AbstractPlugin {
      * @param type $item
      * @return boolean
      */
-    public function Authorize($item) {
+    public function Authorize($item, $action= 'view' ) {
 
         $user_session = $this->getSessContainer();
-        
-        //authorize if the item is Public domain 
-        if ($item->rights == 'PubDm')
-            return true;
+       
         // authorize if the user is from a member institute 
         if ($user_session->user['user']['role'] == 'member') {
             return true;
         }
+        
+        //authorize if the item is Public domain 
+        if ($item->rights == 'PubDm' && $action == 'view')
+            return true;
+        
         // authorize if the title is has location code and the non-member is AMP member having rights
         if (isset($item->title->locationcode) && in_array($item->title->locationcode, $user_session->user['user']['amp'])) {
             return true;
         }
+        
         return false;
     }
 

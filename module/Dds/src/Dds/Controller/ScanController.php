@@ -142,7 +142,7 @@ class ScanController extends AbstractActionController {
 
         $this->asset = $this->plugin('AssetData');
         
-        if ( !$this->asset->authorize($this->item) ) { 
+        if ( !$this->asset->authorize($this->item, 'download') && $this->item->perpage) { 
             $view = new ViewModel();
             $view->setTemplate('error/403');
             return $view;
@@ -239,7 +239,7 @@ class ScanController extends AbstractActionController {
 
        $this->asset = $this->plugin('AssetData');
         
-        if ( !$this->asset->authorize($this->item) ) { 
+        if ( !$this->asset->authorize($this->item, 'download') ) { 
             $view = new ViewModel();
             $view->setTemplate('error/403');
             return $view;
