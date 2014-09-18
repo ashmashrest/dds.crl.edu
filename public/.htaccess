@@ -47,4 +47,6 @@ RewriteCond %{REQUEST_URI}::$1 ^(/.+)(.+)::\2$
 RewriteRule ^(.*) - [E=BASE:%1]
 RewriteRule ^(.*)$ %{ENV:BASE}index.php [NC,L]
 
-
+	
+#Redirects request for all URLs ending in a / except for the root:
+RedirectMatch 301 ^(.+)/$ $1
