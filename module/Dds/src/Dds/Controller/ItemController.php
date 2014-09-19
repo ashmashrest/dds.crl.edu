@@ -22,7 +22,12 @@ class ItemController extends AbstractActionController {
         $this->id = $this->params()->fromRoute('id');
 
         $this->f = $this->params()->fromRoute('f');
-
+        
+        // Check if viewer info passed
+        $this->viewer = $this->params()->fromQuery('viewer');       
+        if(!$this->viewer)
+                $this->viewer = 'default';
+        
         if (!$this->id) {
             $this->getResponse()->setStatusCode(404);
         }
@@ -59,15 +64,7 @@ class ItemController extends AbstractActionController {
             return $view;
         }
         // 
-       $view = new ViewModel(array(
-            'item' => $this->item,
-            'user' => $user_session->user,
-            'item_previous' => $item_previous,
-            'item_next' => $item_next,
-            /* 'item_parts' => $item_parts, */
-            'params' => $this->params(),
-            'paginator' => $paginator,
-        ));
+       
         
         if ($this->getItemTable()->getRights($this->item->titlelink, 'CopyRt')) {
 
@@ -83,7 +80,23 @@ class ItemController extends AbstractActionController {
         if (!$this->item->perpage) {
             return $this->redirect()->toRoute('dds-scan', array('action' => 'download', 'id' => $this->id, 'f' => $this->f));
         }
-
+        
+        $view = new ViewModel(array(
+            'item' => $this->item,
+        ));
+       
+        $viewerView = new ViewModel(array(
+            'item' => $this->item,
+            'user' => $user_session->user,
+            'item_previous' => $item_previous,
+            'item_next' => $item_next,
+            /* 'item_parts' => $item_parts, */
+            'params' => $this->params(),
+            'paginator' => $paginator,
+        ));
+        $viewerView->setTemplate('dds/item/viewer/'. $this->viewer );
+        
+        $view->addChild($viewerView, 'viewer');
 
         return $view;
     }

@@ -1,0 +1,45 @@
+<div id="iframe-pagination">
+    <div id="toolbarIframePrimary">
+        <div id="toolbarViewerLeft">
+
+            <button class="toolbarIframeButton pageUp" title="Previous Page" id="previous" tabindex="7" data-l10n-id="previous" data-target="<?php echo $this->previous; ?>"  >
+                <span data-l10n-id="previous_label">Previous</span>
+            </button>
+            <div class="splitToolbarButtonSeparator"></div>
+            <button class="toolbarIframeButton pageDown" title="Next Page" id="next" tabindex="8" data-l10n-id="next" data-target="<?php echo $this->next; ?>" >
+                <span data-l10n-id="next_label">Next</span>
+            </button>
+
+            <label id="pageNumberDDSLabel" class="toolbarLabel" for="pageNumber" data-l10n-id="page_label" >Scan: </label>
+            <input type="number" id="pageDDSNumber"  name="scan-number" class="toolbarField pageNumber" value="<?php echo $this->firstItemNumber; ?>" size="4" min="1" tabindex="9">
+            <input type="number" id="totalPages" value="<?php echo $this->totalItemCount; ?>" style="display:none;" >
+
+            <span id="numDDSPages" class="toolbarLabel" > of <?php echo $this->totalItemCount; ?></span>
+
+
+        </div>
+        <div id="toolbarViewerRight">
+
+            <button id="secondaryDownload" class="secondaryIframeToolbarButton download visibleMediumView" title="Download" tabindex="22" data-l10n-id="download" onclick="window.location.href = '<?php echo $this->url('dds-scan', array('action' => 'download', 'id' => $this->id)); ?>'" >
+                <span data-l10n-id="download_label">Download</span>
+            </button>
+            <button id="secondaryToolbarToggle" class=" secondaryIframeToolbarButton toolbarButton " title="Tools" tabindex="18" data-l10n-id="tools">
+                <span data-l10n-id="tools_label">Tools</span>
+            </button>
+
+        </div>
+    </div>
+    <div id="secondaryToolbar" class="secondaryToolbar doorHangerRight" style="display:none;">
+        <div id="secondaryToolbarButtonContainer" style="max-height: 1260px;">
+
+            <button id="previousIssue" class="secondaryToolbarButton firstPage" title="Go to Previous Issue" tabindex="24" data-l10n-id="previous_issue" onclick="window.location.href = '<?php echo ($this->item_previous) ? $this->url('dds-item', array('action' => 'index', 'id' => $this->item_previous->iid)) : "#" ?>?viewer=iframe';" <?php echo ($this->item_previous) ? '' : 'disabled'; ?>>
+                <span data-l10n-id="previous_issue_label">Go to Previous Issue</span>
+            </button>
+            <button id="nextIssue" class="secondaryToolbarButton lastPage" title="Go to Next Issue" tabindex="25" data-l10n-id="next_issue" onclick="window.location.href = '<?php echo ($this->item_next) ? $this->url('dds-item', array('action' => 'index', 'id' => $this->item_next->iid)) : "#" ?>?viewer=iframe';" <?php echo ($this->item_next) ? '' : 'disabled'; ?>>
+                <span data-l10n-id="next_issue_label">Go to Next Issue</span>
+            </button>
+
+        </div>
+    </div>
+</div>
+

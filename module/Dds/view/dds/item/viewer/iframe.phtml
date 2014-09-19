@@ -1,0 +1,43 @@
+<!-- Le styles -->
+<?php
+echo $this->headLink()
+        ->prependStylesheet($this->basePath() . '/css/iframe.viewer.css')
+;
+echo $this->headScript()
+        ->prependFile($this->basePath() . '/js/iframe.viewer.js')
+
+;
+?>
+
+<div class="panel panel-default" id="ddsViewerPanel">
+
+    <div class="panel-heading" id="ddsViewerHead">
+        <!-- Pagination Start -->
+        <?php
+        echo $this->paginationControl(
+                // the paginator object
+                $paginator,
+                // the scrolling style; see http://zf2.readthedocs.org/en/release-2.1.4/modules/zend.paginator.usage.html#rendering-pages-with-view-scripts
+                'sliding',
+                // the partial to use to render the control
+                array('partial/paginator_iframe', 'Dds'),
+                // the route to link to when a user clicks a control link
+                array(
+            'route' => 'dds-scan',
+            'id' => $item->iid,
+            'item_previous' => $item_previous,
+            'item_next' => $item_next,
+                )
+        );
+        ?>
+        <!-- Pagination End -->
+
+
+    </div>
+
+    <div class="panel-body" id="ddsViewerBody"> 
+        <iframe id="iviewer" src="/page/view/<?= $item->iid; ?>" width="100%" height="1000"></iframe>
+
+    </div>
+
+</div>
