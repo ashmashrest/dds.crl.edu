@@ -63,7 +63,7 @@ class LogTable {
             );
         }
         // Do not log if accessing from CRL (institution id 462) or the user is view parts > 1 if multipart item
-        if ($user['instid'] == '462' || $itemtable->item->f > 1) {
+        if ((isset($user['instid']) && $user['instid'] == '462') || $itemtable->item->f > 1) {
            return;
         }
         $datatime = new DateTime();
