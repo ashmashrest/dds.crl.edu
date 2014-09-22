@@ -24,7 +24,7 @@ RewriteRule ^IPcheck\.asp$ /ipcheck/%1? [R=301,L]
 
 #Redirect URLs from images.crl.edu to DDS
 RewriteCond %{HTTP_HOST} images.crl.edu$
-RewriteRule ^(.*)$ http://dds.crl.edu/guide/$1 [R=301,L]
+RewriteRule ^(.*)$ https://dds.crl.edu/guide/$1 [R=301,L]
 
 # Forcing HTTPS
 #RewriteCond %{HTTPS} !=on [OR]
