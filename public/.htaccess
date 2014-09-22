@@ -22,6 +22,10 @@ RewriteRule ^issue\.asp$ /crldelivery/%1? [R=301,L]
 RewriteCond %{QUERY_STRING} ^ip=([^&]+)$ [NC]
 RewriteRule ^IPcheck\.asp$ /ipcheck/%1? [R=301,L]
 
+#Redirect URLs from images.crl.edu to DDS
+RewriteCond %{HTTP_HOST} images.crl.edu$
+RewriteRule ^(.*)$ http://dds.crl.edu/guide/$1 [R=301,L]
+
 # Forcing HTTPS
 #RewriteCond %{HTTPS} !=on [OR]
 #RewriteCond %{SERVER_PORT} 80

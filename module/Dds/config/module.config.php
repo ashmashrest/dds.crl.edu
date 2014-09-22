@@ -10,6 +10,7 @@ return array(
             'Dds\Controller\Scan' => 'Dds\Controller\ScanController',
             'Dds\Controller\MemberIP' => 'Dds\Controller\MemberIPController',
             'Dds\Controller\Auth' => 'Dds\Controller\AuthController',
+            'Dds\Controller\Guide' => 'Dds\Controller\GuideController',
         ),
     ),
     'controller_plugins' => array(
@@ -132,6 +133,20 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Dds\Controller\MemberIP',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'dds-guides'=>array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/guide[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[a-zA-Z0-9._-]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Dds\Controller\Guide',
                         'action' => 'index',
                     ),
                 ),
