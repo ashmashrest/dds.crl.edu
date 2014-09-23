@@ -74,6 +74,9 @@ class ItemController extends AbstractActionController {
                 return $this->redirect()->toRoute('dds-title', array('action' => 'index', 'id' => $this->item->titlelink));
             }
         }
+         // Check Log table for excessive user and send email 
+        $this->getLogTable()->checkLog($user_session->user['user']['ipaddress']);
+        
         $this->getLogTable()->saveLog($user_session->user['user'], $this->itemTable);
 
         // If not per page send to download
