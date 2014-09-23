@@ -5,6 +5,10 @@ require shibboleth
 
 RewriteEngine On
 
+#block all the bots
+RewriteCond %{HTTP_USER_AGENT} (googlebot|bingbot|Baiduspider) [NC]
+RewriteRule .* - [R=403,L]
+
 #Redirect Titles from old ASP to New clean URL
 RewriteCond %{QUERY_STRING} ^tid=([^&]+)$ [NC,OR]
 RewriteCond %{QUERY_STRING} ^TID=([^&]+)$ [NC]
