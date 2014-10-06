@@ -137,6 +137,21 @@ class TitleController extends AbstractActionController {
             'folders' => $this->getFolderTable()->getFoldersArray()
         ));
     }
+    
+    public function collectionAction() {
+        $titles = $this->getTitleTable()->fetchAll(array(
+            'filter' => array('field' => "Folder ",
+                'value' =>  $this->params()->fromRoute('id') ))
+        );
+        $titles->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+        // set the number of items per page to 10
+        $titles->setItemCountPerPage(20);
+
+        return new ViewModel(array(
+            'titles' => $titles,
+            'collection' => $this->params()->fromRoute('id')
+        ));
+    }
 
     /* Note used */
 

@@ -34,7 +34,8 @@ return array(
                     ),
                 ),
             ),
-            'dds-collection' => array(
+            //Currently not in use
+           /* 'dds-collection' => array( 
                 'type' => 'segment',
                 'options' => array(
                     'route' => '/collection[/:action][/:id]',
@@ -47,7 +48,7 @@ return array(
                         'action' => 'index',
                     ),
                 ),
-            ),
+            ),*/
             'dds-title' => array(
                 'type' => 'segment',
                 'options' => array(
@@ -74,6 +75,20 @@ return array(
                     'defaults' => array(
                         'controller' => 'Dds\Controller\Title',
                         'action' => 'program',
+                    ),
+                ),
+            ),
+            'dds-collection' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/collection[/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Dds\Controller\Title',
+                        'action' => 'collection',
                     ),
                 ),
             ),

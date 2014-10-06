@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h3><?php echo strtoupper(utf8_encode($program)); ?></h3>
+    <h3><?php echo strtoupper(utf8_encode($collection)); ?></h3>
 </div>
 
 <div class="col-md-12" id="accordion">
@@ -12,7 +12,6 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                     <!--       <th>Type</th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -21,7 +20,7 @@
                             ?>
                             <tr>
                                 <td> <?php printf("<a href='%s'>%s</a>", $this->url('dds-title', array('action' => 'index', 'id' => $title->tid)), $title->title); ?></td>
-                                <!--<td><?= $folders[$title->folder]; ?></td>-->
+
                                 </tr>
                                 <?php
                             endforeach;
@@ -38,11 +37,11 @@
                         // the scrolling style
                         'sliding',
                         // the partial to use to render the control
-                        array('partial/paginator.phtml', 'dds-programs'),
+                        array('partial/paginator.phtml', 'dds-collection'),
                         // the route to link to when a user clicks a control link
                         array(
-                    'route' => 'dds-programs',
-                    'id' => $program,
+                    'route' => 'dds-collection',
+                    'id' => $collection,
                         )
                 );
                 ?>
